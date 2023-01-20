@@ -81,5 +81,13 @@ namespace Streamish.Controllers
         {
             return Ok(_videoRepository.Search(q, sortDesc));
         }
+
+        [HttpGet("hottest")]
+        public IActionResult VideoByDate(string since)
+        {
+            return Ok(_videoRepository.VideoByDate(since));
+        }
+
+
     }
 }
