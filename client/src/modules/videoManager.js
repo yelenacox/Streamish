@@ -6,7 +6,12 @@ export const getAllVideos = () => {
 };
 
 export const getAllWithComments = () => {
-    return fetch(`${baseUrl}/GetWithComments`)
+  return fetch(`${baseUrl}/GetWithComments`)
+    .then((res) => res.json())
+};
+
+export const videoSearch = (criterion) => {
+  return fetch(`${baseUrl}/search?q=${criterion}`)
     .then((res) => res.json())
 };
 

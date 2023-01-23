@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Video from './Video';
-import { getAllVideos } from "../modules/videoManager";
-import { getAllWithComments } from "../modules/videoManager";
+import { getAllVideos, getAllWithComments, videoSearch } from "../modules/videoManager";
 
 const VideoList = () => {
   const [videos, setVideos] = useState([]);
+
 
 //   const getVideos = () => {
 //     getAllVideos().then(videos => setVideos(videos));
@@ -18,18 +18,28 @@ const VideoList = () => {
       getAllWithComments().then(videos => setVideos(videos));
     };
   
+    
+    const searchVideos = (event) => {;
+        videoSearch(event.target.value).then(video => setVideos(video));
+    };
+    
     useEffect(() => {
       getVideosWithComments();
     }, []);
-    
+
   return (
     <div className="container">
-      <div className="row justify-content-center">
-        {videos && videos.map((video) => (
+    <div className="row justify-content-center">
+      <input type="" placeholder="Search by title" onChange={searchVideos}/>
+  
+      {
+        (videos.length > 0 && videos!==null) ?
+        videos.map((video) => (
           <Video video={video} key={video.id} />
-        ))}
-      </div>
-    </div>
+        ))
+        : <h2>No Result Found</h2>
+      }
+      </div></div>
   );
 };
 
